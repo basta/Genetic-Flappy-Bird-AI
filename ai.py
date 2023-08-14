@@ -59,4 +59,12 @@ class ModelSimple:
         return self.layer.eval(vec)
 
     def mutated(self, mut_rate: float) -> "ModelSimple":
-        return ModelSimple(self.layer.mutated(mut_rate))
+        return self.__class__(self.layer.mutated(mut_rate))
+
+
+class ModelSimplePred:
+    def __init__(self, layer=None):
+        self.layer = layer or Layer([LinNode(), LinNode(), LinNode()], True)
+
+    def eval(self, vec: tuple[float, float, float]):
+        return self.layer.eval(vec)
